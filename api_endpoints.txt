@@ -1,0 +1,9 @@
+api endpoints:
+GET: http://127.0.0.1:8000/api/users_list/
+POST: http://127.0.0.1:8000/api/users_list/
+PUT: http://127.0.0.1:8000/api/users_list/3/
+DELETE: http://127.0.0.1:8000/api/users_list/3/
+
+tokens endpoints:
+http://127.0.0.1:8000/api/token/
+http://127.0.0.1:8000/api/token/refresh/

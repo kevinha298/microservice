@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: django_app
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    volumes: 
+      - ./djangoapp:/djangoapp
+    environment:
+      - SECRET_KEY=devsecretkey
+      - DEBUG=1 
+      - DB_HOST=db
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASS=postgres
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    restart: always
+    container_name: postgres_db
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:                  # map persistent data from container (/var/lib/postgresql/data) to "pgdata" folder on the current directory.
+      - ./pgdb:/var/lib/postgresql/data
+    ports:                    # map external port 5436 to container port of 5432.  Use external port 5436 instead of default 5432 to avoid conflict with existing postgres on host.
+      - 5436:5432
+    
