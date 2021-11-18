@@ -9,4 +9,4 @@ class Patient(models.Model):
     dob = models.DateField()
 
     def __str__(self):
-        return f'{self.employeeID} - {self.employeeName}'
+        return f'{self.mrn} - {self.name}'
