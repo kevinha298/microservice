@@ -22,7 +22,7 @@ from api.api import PatientList, PatientDetail
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api/patient/$', PatientList.as_view(), name='patient_list'),
-    url(r'^api/patient/(?P<employeeID>\d+)/$', PatientDetail.as_view(), name='patient_list'),
+    url(r'^api/patient/(?P<mrn>\d+)/$', PatientDetail.as_view(), name='patient_list'),
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view())
 ]
