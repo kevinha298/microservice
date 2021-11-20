@@ -1,10 +1,11 @@
 from rest_framework import serializers
-from api.models import Patient
+from api.models import Member
 
-class UserSerializer(serializers.ModelSerializer):
-    mrn = serializers.IntegerField(required=True)
-    name = serializers.CharField(required=True)
-    dob = serializers.DateField(required=True)
+class MemberSerializer(serializers.ModelSerializer):
+    mrn = serializers.IntegerField(required=False)
+    name = serializers.CharField(required=False)
+    dob = serializers.DateField(required=False)
     class Meta:
-        model = Patient
+        model = Member
+        # fields = ('name', 'mrn')
         fields = '__all__'

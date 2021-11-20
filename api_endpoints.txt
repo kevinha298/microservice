@@ -1,9 +1,15 @@
-api endpoints:
-GET: http://127.0.0.1:8000/api/users_list/
-POST: http://127.0.0.1:8000/api/users_list/
-PUT: http://127.0.0.1:8000/api/users_list/3/
-DELETE: http://127.0.0.1:8000/api/users_list/3/
+    api endpoints:
+    GET: http://127.0.0.1:8000/api/member/
+    POST: http://127.0.0.1:8000/api/member/
+    PUT: http://127.0.0.1:8000/api/member/3/
+    DELETE: http://127.0.0.1:8000/api/member/3/
 
-tokens endpoints:
-http://127.0.0.1:8000/api/token/
-http://127.0.0.1:8000/api/token/refresh/
+    {
+    "mrn": 228,
+    "name": "John Doe",
+    "dob": "1968-01-28"
+}
+
+    tokens endpoints:
+    http://127.0.0.1:8000/api/token/
+    http://127.0.0.1:8000/api/token/refresh/

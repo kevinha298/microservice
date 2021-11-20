@@ -17,12 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from api.api import PatientList, PatientDetail
+from api.api import MemberList, MemberDetail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^api/patient/$', PatientList.as_view(), name='patient_list'),
-    url(r'^api/patient/(?P<mrn>\d+)/$', PatientDetail.as_view(), name='patient_list'),
+    url(r'^api/member/$', MemberList.as_view(), name='member'),
+    url(r'^api/member/(?P<mrn>\d+)/$', MemberDetail.as_view(), name='member'),
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view())
 ]
