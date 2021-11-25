@@ -1,6 +1,7 @@
 import requests
 import random, string 
 from datetime import datetime, timedelta
+import threading
 
 def get_token():
     tokenEndPoint = f'{baseURL}/api/token/'
@@ -56,19 +57,38 @@ def get_random_dob(min_year=1900, max_year=datetime.today().year):
 def get_largest_member_id():
     return get_data()[-1]['id'] if get_data() else -1
 
+def get_random_mrn():
+    return random.randint(1000, 10000)
+
+
 if __name__ == "__main__":
     baseURL = 'http://127.0.0.1:8000'
     # print(get_token())
-    random_mrn = random.randint(1000, 10000)
-    random_name = f'{get_random_name(3)} {get_random_name(6)}'
-    random_dob = get_random_dob()
     #insert new data:
-    # post_data(random_mrn, random_name, random_dob)
+    # post_data(get_random_mrn(), f'{get_random_name(3)} {get_random_name(6)}', get_random_dob())
     #retrieve existing data:
-    for m in get_data():
-        print(m)
+    # for m in get_data():
+    #     print(m)
     #update last memeber of existing data:
     # if get_largest_member_id() > 0: edit_data(get_largest_member_id(), 'Bill Owens', '1988-09-28')
     #delete last member of existing data:
     # if get_largest_member_id() > 0: delete_data(get_largest_member_id())
 
+    def do_request():
+        while True:
+            post_data(get_random_mrn(), f'{get_random_name(3)} {get_random_name(6)}', get_random_dob())
+
+    threads = []
+
+    for i in range(8):
+        t = threading.Thread(target=do_request())
+        t.daemon = True
+        threads.append(t)
+    
+    for i in range(8):
+        threads[i].start()
+    
+    for i in range(8):
+        threads[i].join()
+
+    
